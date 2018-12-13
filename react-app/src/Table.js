@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 
 class Table extends Component {
     render() {
+        const { characterData } = this.props;
+
         return (
             <table>
                 <TableHeader />
-                <TableBody />
+                <TableBody characterData={characterData} />
             </table>
         );
     }
@@ -22,29 +24,19 @@ const TableHeader = () => {
     );
 }
 
-const TableBody = () => {
-    return (
 
-            <tbody>
-                <tr>
-                    <td>Charlie</td>
-                    <td>Janitor</td>
-                </tr>
-                <tr>
-                    <td>Mac</td>
-                    <td>Bouncer</td>
-                </tr>
-                <tr>
-                    <td>Dee</td>
-                    <td>Aspiring actress</td>
-                </tr>
-                <tr>
-                    <td>Dennis</td>
-                    <td>Bartender</td>
-                </tr>
-            </tbody>
-
-    );
+const TableBody = props => {
+    //loop throuh each array element, construct html elemnt and add it to "rows"
+    const rows = props.characterData.map((row, index) => {
+        return (
+            //Include key to index each table row
+            <tr key={index}>
+                <td>{row.name}</td>
+                <td>{row.job}</td>
+            </tr>
+        );
+    });
+    return <tbody>{rows}</tbody>;
 }
 
 
