@@ -7,6 +7,8 @@ import Counters from './components/counters';
 
 class App extends Component {
 
+
+
   state = {
     counters: [
       { id: 1, value: 4 },
@@ -15,6 +17,11 @@ class App extends Component {
       { id: 4, value: 0 }
     ]
   };
+  handleAdd = () => {
+    const counters = this.state.counters;
+    counters.push({id:5,value:3});
+    this.setState({counters});
+  };
   handleDelete = counterId => {
     //use filter to get all array objects where the id is not the received counterId
     const counters = this.state.counters.filter(c => c.id !== counterId);
@@ -22,6 +29,7 @@ class App extends Component {
 
     console.log("Event Handler Called", counterId);
   };
+
   handleIncrement = counter => {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
@@ -38,11 +46,12 @@ class App extends Component {
     this.setState({ counters });
   };
   render() {
+    console.log("App - Rendered")
     return (
       <React.Fragment>
       <NavBar totalCounters={this.state.counters.filter(c=> c.value > 0).length}/>
-      <main className="">
-       <Counters counters={this.state.counters} onReset = {this.handleReset} onIncrement={this.handleIncrement} onDelete={this.handleDelete}/>
+      <main className="container">
+       <Counters counters={this.state.counters} onAdd = {this.handleAdd} onReset = {this.handleReset} onIncrement={this.handleIncrement} onDelete={this.handleDelete}/>
        </main>
        </React.Fragment>
     );

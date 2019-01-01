@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 
-//Stateless functional Component version
-const Navbar = props => {
+//Stateless functional Component version using object destructuring
+const Navbar = ({ totalCounters }) => {
   return (
     <nav className="navbar navbar-light bg-light">
       <a className="navbar-brand" href="#">
         Navbar
         <span className="badge badge-pill badge-secondary m-2">
-          {props.totalCounters}
+          {totalCounters}
         </span>
       </a>
     </nav>
